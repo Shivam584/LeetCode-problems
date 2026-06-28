@@ -1,9 +1,10 @@
 class Solution {
     
     public int minDistance(String word1, String word2) {
-        int t[][]= new int[word1.length()+1][word2.length()+1];
-        for(int i=0;i<=word1.length();i++)
-        for(int j=0;j<=word2.length();j++)
+        int m=word1.length(),n=word2.length();
+        int t[][]= new int[m+1][n+1];
+        for(int i=0;i<=m;i++)
+        for(int j=0;j<=n;j++)
             {
                 if(i==0)
                     t[i][j]=j;
@@ -16,6 +17,6 @@ class Solution {
                     t[i][j]=1+Math.min(t[i][j],Math.min(t[i][j-1],t[i-1][j]));
                 }
             }
-        return t[word1.length()][word2.length()];
+        return t[m][n];
     }
 }
