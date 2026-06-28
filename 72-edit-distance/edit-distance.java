@@ -11,10 +11,9 @@ class Solution {
                     t[i][j]=i;
                 else
                 {
-                    if(word1.charAt(i-1) == word2.charAt(j-1))
-                        t[i][j]=t[i-1][j-1];
-                    else
-                     t[i][j]=1+Math.min(t[i-1][j-1],Math.min(t[i][j-1],t[i-1][j]));
+                    t[i][j]=t[i-1][j-1];
+                    if(word1.charAt(i-1) != word2.charAt(j-1))
+                    t[i][j]=1+Math.min(t[i][j],Math.min(t[i][j-1],t[i-1][j]));
                 }
             }
         return t[word1.length()][word2.length()];
