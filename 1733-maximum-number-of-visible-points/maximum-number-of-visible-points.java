@@ -7,13 +7,8 @@ class Solution {
         {
             int y=point.get(1)-location.get(1);
             int x=point.get(0)-location.get(0);
-            if(x==0)
-                {
-                    if(y==0)
-                        self++;
-                    else
-                        ls.add(y>0 ? 90.0 : 270.0);
-                }
+            if(x==0&&y==0)
+                self++;
             else
                 {
                 qd=Math.toDegrees(Math.atan2(y,x));
@@ -21,7 +16,6 @@ class Solution {
                     qd += 360;
                 ls.add(qd);
                 }
-           
         }
         Collections.sort(ls);
         int i=0,j=0;
@@ -42,7 +36,6 @@ class Solution {
                     c--;
                     i++;
                 }
-            // System.out.println(ls.get(j)+" "+(ls.get(i)+angle));
             max_c=Math.max(max_c,c);
             j++;
         }
