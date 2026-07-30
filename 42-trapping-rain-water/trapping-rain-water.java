@@ -1,33 +1,23 @@
 class Solution {
-    int calcArea(int[] height, int j)
-    {
-        int maxLeftHeight=height[0];
-        int ans=0;
-        for(int i=0;i<j;i++)
-        {
-            if(height[i]>maxLeftHeight)
-                maxLeftHeight=height[i];
-            ans+=Math.min(maxLeftHeight,height[j])-height[i];
-        }
-        return ans;
-    }
-   
     public int trap(int[] height) {
-        int maxHIndex=0,area=0;
-        for(int i=0;i<height.length;i++)
-            if(height[maxHIndex]<height[i])
-                maxHIndex=i;
-        area+=calcArea(height, maxHIndex);
         int i=0,j=height.length-1;
+        int lMax=0,rMax=0;
+        int trappedWater=0;
         while(i<j)
         {
-            int temp=height[i];
-            height[i]=height[j];
-            height[j]=temp;
-            i++;
-            j--;
+            if(height[i]<height[j])
+            {
+                lMax=Math.max(lMax,height[i]);
+                trappedWater+=lMax-height[i];
+                i++;
+            }
+            else
+            {
+                rMax=Math.max(rMax,height[j]);
+                trappedWater+=rMax-height[j];
+                j--;
+            }
         }
-        area+=calcArea(height,height.length-maxHIndex-1);
-        return area;
+        return trappedWater;
     }
 }
