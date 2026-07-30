@@ -1,35 +1,33 @@
-
 class Solution {
-    public int cal(int height[],int n,int id)
+    int calcArea(int[] height, int j)
     {
-        int sum=0;
-        int l=0;
-        for(int i=0;i<id;i++)
+        int maxLeftHeight=height[0];
+        int ans=0;
+        for(int i=0;i<j;i++)
         {
-            if(height[i]>l)
-                l=height[i];
-            sum+=Math.min(l,height[id])-height[i];
+            if(height[i]>maxLeftHeight)
+                maxLeftHeight=height[i];
+            ans+=Math.min(maxLeftHeight,height[j])-height[i];
         }
-        return sum;
+        return ans;
     }
+   
     public int trap(int[] height) {
-        int id=0,maxHeight=0,n=height.length;
-        for(int i=0;i<n;i++)
-            {
-                if( maxHeight<height[i])
-                    {
-                        id=i;
-                        maxHeight=height[i];
-                    }
-            }
-        int res=cal(height,n,id),temp;
-        for(int i=0;i<n/2;i++)
+        int maxHIndex=0,area=0;
+        for(int i=0;i<height.length;i++)
+            if(height[maxHIndex]<height[i])
+                maxHIndex=i;
+        area+=calcArea(height, maxHIndex);
+        int i=0,j=height.length-1;
+        while(i<j)
         {
-            temp=height[i];
-            height[i]=height[n-i-1];
-            height[n-i-1]=temp;
+            int temp=height[i];
+            height[i]=height[j];
+            height[j]=temp;
+            i++;
+            j--;
         }
-        res+=cal(height,n,n-id-1);
-        return res;
+        area+=calcArea(height,height.length-maxHIndex-1);
+        return area;
     }
 }
