@@ -14,31 +14,23 @@ public class Solution {
         if(head==null)
         return head;
         ListNode slow=head;
-        ListNode fast= head.next;
-        boolean cycleExist= false;
+        ListNode fast= head;
         while(fast!=null && fast.next!=null)
         {
-            if(slow==fast)
-            {cycleExist=true;break;}
+           
             slow=slow.next;
             fast=fast.next.next;
+            if(slow==fast)
+            {
+                slow=head;
+                while(fast!=slow)
+                {
+                    fast=fast.next;
+                    slow=slow.next;
+                }
+                return slow;
+            }
         }
-        if(!cycleExist)
-            return null;
-        
-        ListNode x=head,y=fast.next;
-        fast=fast.next;
-        slow.next=null;
-        while(head!=fast)
-        {
-            head=head.next;
-            fast=fast.next;
-            if(head==null)
-                head=y;
-            if(fast==null)
-                fast=x;
-        }
-        slow.next=y;
-        return fast;
+        return null;
     }
 }
