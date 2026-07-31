@@ -1,10 +1,10 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
-        long maxSpeed= Long.MIN_VALUE;
+        int maxSpeed= Integer.MIN_VALUE-1;
         for(int i=0;i<piles.length;i++)
             maxSpeed=Math.max(maxSpeed, piles[i]);
-        long possibleSpeed,minSpeed=1L;
-        long ans=maxSpeed;
+        int possibleSpeed,minSpeed=1;
+        int ans=maxSpeed;
         while(minSpeed<=maxSpeed)
         {
             possibleSpeed= minSpeed + (maxSpeed-minSpeed)/2;
@@ -19,6 +19,6 @@ class Solution {
             else
             minSpeed=possibleSpeed+1;
         }
-        return (int)ans;
+        return ans;
     }
 }
