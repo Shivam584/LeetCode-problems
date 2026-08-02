@@ -34,14 +34,13 @@ class Solution {
             if(!dq.isEmpty())
                 ans=Math.max(ans,dq.getFirst().a+points[i][0]+points[i][1]);
             
+            while(!dq.isEmpty() && dq.getLast().a<points[i][1]-points[i][0])
+                dq.pollLast();  
+                
             if(dq.isEmpty()|| dq.getFirst().a<points[i][1]-points[i][0])
                 dq.addFirst(new Pair(points[i][1]-points[i][0],points[i][0]));
             else
-            {
-                while(!dq.isEmpty() && dq.getLast().a<points[i][1]-points[i][0])
-                dq.pollLast();   
                 dq.addLast(new Pair(points[i][1]-points[i][0],points[i][0]));
-            }
        }
        return ans;
     }
