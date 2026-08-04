@@ -5,9 +5,9 @@ class Solution {
             mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
         }
 
-        for(Map.Entry<Integer,Integer> entry : mp.entrySet())
+        for(Integer i : mp.values())
         {
-            if(entry.getValue()>1)
+            if(i>1)
             return true;
         }
         return false;
