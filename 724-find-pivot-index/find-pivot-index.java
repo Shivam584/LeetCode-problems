@@ -1,25 +1,18 @@
 class Solution {
     public int pivotIndex(int[] nums) {
         int n=nums.length;
-        int preSumL[] =new int[n];
-        int preSumR[] =new int[n];
-        preSumL[0]=nums[0];
-        preSumR[n-1]=nums[n-1];
-        for(int i=1,j=n-2;i<n;i++,j--)
+        int preSumL=0;
+        int preSumR =0;
+        for(int i=0;i<n;i++)
+            preSumR+=nums[i];
+        for(int i=0;i<n;i++)
         {
-            preSumL[i]=nums[i]+preSumL[i-1];
-            preSumR[j]=nums[j]+preSumR[j+1];
-       
-        }
-        if(preSumR[0]==nums[0])
-            return 0;
-        for(int i=1;i<n;i++)
-        {
-            if(preSumL[i]==preSumR[i])
+            preSumR-=nums[i];
+           if(preSumL==preSumR)
             return i;
+           preSumL+=nums[i];
+            
         }
-        if(preSumL[n-1]==nums[n-1])
-            return n-1;
-        return -1;
+     return -1;
     }
 }
