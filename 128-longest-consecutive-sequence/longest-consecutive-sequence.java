@@ -6,17 +6,16 @@ class Solution {
         int fg,mx=0,val=0;
         for(int num : nums)
         {
-            fg=num;
-            val=1;
-            while(s.contains(fg-1))
-            {   
-                fg--;
-            }
-            while(s.contains(fg+1))
+            if(!s.contains(num-1))   
             {
-                fg++;
-                val++;
-                s.remove(fg);
+                fg=num;
+                val=1;
+                while(s.contains(fg+1))
+                {
+                    fg++;
+                    val++;
+                    s.remove(fg);
+                }
             }
             mx=Math.max(mx,val);
             val=1;
