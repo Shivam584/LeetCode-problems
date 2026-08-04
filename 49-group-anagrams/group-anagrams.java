@@ -41,9 +41,9 @@ class Solution {
             mp.put(n,new ArrayList<String>());
             mp.get(n).add(s);
         } 
-        for(Map.Entry<Node,List<String>> entry : mp.entrySet())
+        for(List<String> entry : mp.values())
         {
-            sll.add(entry.getValue());
+            sll.add(entry);
         }
         return sll;
     }
