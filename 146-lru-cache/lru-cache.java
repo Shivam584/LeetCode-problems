@@ -22,7 +22,7 @@ class Node
     @Override
     public int hashCode()
     {
-        return Objects.hash(key,value);
+        return Objects.hash(key,value,left,right);
     }
 }
 class LRUCache {
@@ -34,33 +34,45 @@ class LRUCache {
         head=tail=null;
         this.c=capacity;
     }
-    private void setNodeAslatest(Node node)
+    private void removeNode(Node node)
     {
-        if(tail==node)
-            return;
-
+        mp.remove(node.key);
         Node prv=node.left;
-            Node nxt=node.right;
+        Node nxt=node.right;
             node.left=node.right=null;
+        if(prv!=null)
+            prv.right=nxt;
+        if(nxt!=null)
+            nxt.left=prv;
+        
+        if(node==head)
+            head=nxt;
+        
+        if(node==tail)     
+            tail=prv;
+    }
+      private void addNode(Node node)
+    {
+        mp.put(node.key,node);
 
-            if(head==node)
-                head=nxt;
-            
-            if(nxt!=null)
-                nxt.left=prv;
-                
-            if(prv!=null)
-                prv.right=nxt;
+        if(head==null)
+            head=node;
 
+        node.left=tail;
+        if(tail!=null)
             tail.right=node;
-            node.left=tail;
-            tail=node;
+        tail=node;
     }
     public int get(int key) {
         Node node=mp.get(key);
        if(node==null)
             return -1;
-        setNodeAslatest(node);
+
+        if(node!=tail)
+        {
+            removeNode(node);
+            addNode(node);
+        }
         return tail.value;
     }
     
@@ -69,21 +81,16 @@ class LRUCache {
         if(node==null)
         {
             node=new Node(key,value);
-            c--;
-            mp.put(key,node);
+            if(c==0)
+                removeNode(head);
+            else
+                c--;
         }
-        if(c<0)
-        {
-            mp.remove(head.key);
-            Node nxtHead=head.right;
-            head.right=null;
-            head=nxtHead;
-            c++;
-        }
-        if(head==null)
-            head=tail=node;
+        else
+            removeNode(node);
+        addNode(node);    
         node.value=value;
-        setNodeAslatest(node);
+        
     }
 }
   
