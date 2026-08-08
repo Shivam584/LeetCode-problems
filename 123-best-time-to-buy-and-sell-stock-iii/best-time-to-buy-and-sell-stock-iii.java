@@ -1,18 +1,40 @@
 class Solution {
+    int t[][][];
+    int dp(int[] nums, int i,int n, int k, int h)
+    {
+        if((k==0 || i==n) && h==0)
+            return 0;
+        if((k==0 || i==n) && h==1)
+            return Integer.MIN_VALUE;
+        
+        if(t[i][k][h]!=-1)
+            return t[i][k][h];
+
+    int ans= dp(nums,i+1,n,k,h);
+        if(h==0)
+        {
+            ans=Math.max(-nums[i]+dp(nums,i,n,k,1),ans);
+        }
+        else
+        {
+            ans=Math.max(nums[i]+dp(nums,i,n,k-1,0),ans);
+        }
+        return t[i][k][h]=ans;
+    }
     public int maxProfit(int[] nums) {
         int n=nums.length;
-        int buy1=Integer.MAX_VALUE,
-            sell1=Integer.MIN_VALUE,
-            buy2=Integer.MAX_VALUE,
-            sell2=Integer.MIN_VALUE;
-        int profit=0;
-        for(int i=0;i<n;i++)
+        t=new int[n+1][3][3];
+        
+        for(int i=0;i<=n;i++)
         {
-            buy1=Math.min(buy1,nums[i]);
-            sell1=Math.max(sell1,nums[i]-buy1);
-            buy2=Math.min(buy2,nums[i]-sell1);
-            sell2=Math.max(sell2,nums[i]-buy2); 
+            for(int j=0;j<3;j++)
+            {
+                for(int k=0;k<3;k++)
+                {
+                    t[i][j][k]=-1;
+                }
+            }
         }
-        return sell2;
+        return dp(nums, 0,n,2, 0);
     }
 }
