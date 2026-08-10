@@ -1,29 +1,26 @@
 class Solution {
     public String shiftingLetters(String s, int[][] shifts) {
         int sum=0;
-        int t=0,i=0,d,val;
-        TreeMap<Integer,Integer> mp= new TreeMap<>();
-        for(int []sh : shifts)
+        int t,d,v;
+        int val[]= new int[s.length()+1];
+        for(int[] sh : shifts)
         {
-            t=(sh[2]==0) ? -1 : 1;
-            mp.put(sh[0],mp.getOrDefault(sh[0],0)+t);
-            mp.put(sh[1]+1,mp.getOrDefault(sh[1]+1,0)-t);
+            t=(sh[2]==0) ? -1: 1;
+            val[sh[0]]+=t;
+            val[sh[1]+1]-=t;
         }
         char ch[]=s.toCharArray();
 
-        for(int k : mp.keySet())
+        for(int i=0;i<s.length();i++)
         {
-            if(i<k)
+            sum+=val[i];
+            if(sum!=0)
             {
-                for(int j=i;j<k;j++)
-                {
-                    val=sum%26;
-                    d=(val<0)? 26: 0;
-                        ch[j]=(char)('a'+(d+val+ch[j]-'a')%26);
-                }
+                v=sum%26;
+                d=(v<0)? 26: 0;
+                ch[i]=(char)('a'+(d+v+ch[i]-'a')%26);
             }
-            sum+=mp.get(k);
-            i=k;
+            
         }
 
         return new String(ch);
