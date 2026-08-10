@@ -1,10 +1,9 @@
 class Solution {
-    public int maxSatisfied(int[] c, int[] gk, int m) {
+    public int maxSatisfied(int[] c, int[] g, int m) {
         int n=c.length;
-        int g[]=new int[n];
         for(int i=0;i<n;i++)
         {
-            g[i]=gk[i]*c[i];
+            g[i]=g[i]*c[i];
         }
         int ans=0;
         int i=0,j=0;
@@ -32,7 +31,7 @@ class Solution {
             if(i>=mi && i<=mj)
             ans+=c[i];
             else
-            ans+=(gk[i]==0?c[i]:0);
+            ans+=(g[i]!=0?0:c[i]);
         }
 
         return ans;
