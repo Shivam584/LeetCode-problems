@@ -7,14 +7,12 @@ class Solution {
         int c=1;
         for(int i=1;i<nums.length;i++)
         {
-            if(val+1==nums[i])
-                {
-                    c++;val++;
-                }
+            if(val+c==nums[i])
+                    c++;
             else
                break;
         }
-        val-=c;
+        val--;
         int sum= val*c + (c*(c+1))/2;
         while(ms.contains(sum))
             sum++;
