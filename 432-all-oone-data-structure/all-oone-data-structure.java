@@ -15,9 +15,11 @@ class Node
 class AllOne {
     Map<String,Node> mp;
     TreeMap<Integer,Node> mf;
+    int minf,maxf;
     public AllOne() {
         mp= new  HashMap<String,Node>();
-        mf= new TreeMap<Integer,Node>();
+        mf= new  TreeMap<Integer,Node>();
+        minf=maxf=0;
     }
     void add(Node node)
     {
@@ -57,12 +59,16 @@ class AllOne {
             node.c++;
         }
         else
+        {
             node=new Node(key,1);
+
+        }
         add(node);
     }
     
     public void dec(String key) {
         Node node=mp.get(key);
+
         remove(node);
         node.c--;
         
