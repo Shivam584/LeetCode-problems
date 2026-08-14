@@ -21,12 +21,11 @@ class Solution {
 
         if(root==null || subRoot==null)
             return false;
-        boolean R1=false,R2=false; 
-        if(root.val==subRoot.val)
-            R2=(isSubtree(root.left,subRoot.left,1) && isSubtree(root.right,subRoot.right,1));  
-        
+        boolean R1=false,R2=root.val==subRoot.val && (isSubtree(root.left,subRoot.left,1) && isSubtree(root.right,subRoot.right,1));  
+
         if(fg==0)
            R1=isSubtree(root.left,subRoot,fg) || isSubtree(root.right,subRoot,fg);
+        
         return (fg==1) ? R2 : R1 || R2;
     }
 
