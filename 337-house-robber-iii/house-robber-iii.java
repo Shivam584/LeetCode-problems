@@ -45,8 +45,9 @@ class Solution {
             if(root==null)
                 return 0;
             Pair p = new Pair(root,fg);
-            if(mp.containsKey(p))
-                return mp.get(p);
+            int c=mp.getOrDefault(p,-1);
+            if(c>-1)
+                return c;
             int res= dp(root.left,0)+ dp(root.right,0);
             if(fg==0)
                 res=Math.max(root.val +dp(root.left,1)+dp(root.right,1),res);
