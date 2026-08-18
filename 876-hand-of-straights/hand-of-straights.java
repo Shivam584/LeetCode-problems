@@ -7,6 +7,10 @@ class Solution {
         List<List<Integer>> ls =new ArrayList<List<Integer>>();
     
         int sz=n/groupSize;
+        int l[]= new int[sz];
+        int v[]= new int[sz];
+        for(int i=0;i<sz;i++)
+            v[i]=-1;
         for(int i=0;i<sz;i++)
         ls.add(new ArrayList<Integer>());
         int k=0;
@@ -15,11 +19,13 @@ class Solution {
             int fg=0;
               for(int i=0;i<sz;i++)
               {
-                    if(ls.get(i).size()==0 ||( ls.get(i).size() <groupSize && ls.get(i).get(ls.get(i).size()-1)+1==num))
+                    if(v[i]==-1 || (l[i]<groupSize && v[i]+1==num))
                         {
-                            ls.get(i).add(num);
+                           v[i]=num;
+                            l[i]++;
                             fg=1;
                             break;
+
                         }
               }
               if(fg==0)
