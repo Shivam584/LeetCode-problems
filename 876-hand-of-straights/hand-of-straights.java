@@ -3,17 +3,14 @@ class Solution {
         int n=hand.length;
         if(n%groupSize!=0)
             return false;
-        Arrays.sort(hand);
-        List<List<Integer>> ls =new ArrayList<List<Integer>>();
-    
         int sz=n/groupSize;
         int l[]= new int[sz];
         int v[]= new int[sz];
         for(int i=0;i<sz;i++)
             v[i]=-1;
-        for(int i=0;i<sz;i++)
-        ls.add(new ArrayList<Integer>());
         int k=0;
+
+        Arrays.sort(hand);
         for(int num : hand)
         {     
             int fg=0;
@@ -31,12 +28,7 @@ class Solution {
               if(fg==0)
                     return false;
         }
-        // for( int i=0;i<sz;i++)
-        // {
-        //     for(int j=0 ;j<ls.get(i).size();j++)
-        //         System.out.print(ls.get(i).get(j));
-        //     System.out.print("\n");
-        // }
+
         return true;
     }
 }
