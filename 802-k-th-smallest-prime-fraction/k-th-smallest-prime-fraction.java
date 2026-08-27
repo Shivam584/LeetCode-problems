@@ -1,29 +1,3 @@
-class Pair
-{
-    int a,b;
-    double c;
-    public Pair(int a,int b,double d)
-    {
-        this.a=a;
-        this.b=b;
-        this.c= d;
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if(obj==null || obj.getClass()!=getClass())
-            return false;
-        Pair p= (Pair)obj;
-        return p==this || (p.a==this.a && p.b==this.b && p.c==this.c);
-    } 
-
-    @Override
-    public int hashCode()
-    {
-        return Objects .hash(a,b,c);
-    }
-}
 class Solution {
     public int[] kthSmallestPrimeFraction(int[] arr, int k) {
        double mn=0.0, mx=1.0;
