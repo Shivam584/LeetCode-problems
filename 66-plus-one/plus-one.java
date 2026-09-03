@@ -1,28 +1,26 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        int n=digits.length;
-        digits[n-1]++;
-        if(digits[n-1]==10)
-        {
-        int q=0,rem=0;
-        int i=n-1;
+           int n = digits.length;
+        int carry = 1;
 
-        do{
-        digits[i]+=q;
-        q=digits[i]/10;
-        digits[i]%=10;
-        i--;
-        }while(i>-1 && q!=0);
-        
-        if(q!=0)
-            {
-                int newDigits[] = new int[n+1];
-                newDigits[0]=q;
-                for(int j=0;j<n;j++)
-                      newDigits[j+1]=digits[j];
-                    digits=newDigits;
-            }
+        for (int i = n - 1; i >= 0; i--) {
+
+            digits[i] += carry;
+
+            carry = digits[i] / 10;
+            digits[i] %= 10;
+
+            if (carry == 0)
+                return digits;
         }
-        return digits;
+
+        int[] newDigits = new int[n + 1];
+        newDigits[0] = carry;
+
+        for (int i = 0; i < n; i++) {
+            newDigits[i + 1] = digits[i];
+        }
+
+        return newDigits;
     }
 }
