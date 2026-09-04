@@ -6,13 +6,9 @@ class Solution {
             return 0;
         if(t[n]!=-1)
             return t[n];
-        int taken =keys[n]*mp.get(keys[n]);
-        if(n-1>-1 && keys[n-1]+1==keys[n])
-            taken+=dp(n-2,keys,mp);
-        else
-            taken+=dp(n-1,keys,mp);
         
-        return t[n]=Math.max(taken , dp(n-1,keys,mp));
+        int j=(n-1>-1 && keys[n-1]+1==keys[n]) ? 2 : 1;
+        return t[n]=Math.max(keys[n]*mp.get(keys[n]) + dp(n-j,keys,mp) , dp(n-1,keys,mp));
     }
     public int deleteAndEarn(int[] nums) {
         Map<Integer,Integer> mp = new HashMap<>();
