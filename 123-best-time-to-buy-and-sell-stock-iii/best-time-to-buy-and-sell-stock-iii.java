@@ -2,18 +2,26 @@ class Solution {
     
     public int maxProfit(int[] nums) {
         int n=nums.length;
-        int b1=Integer.MIN_VALUE;
-        int b2=Integer.MIN_VALUE;
-        int s1=Integer.MIN_VALUE;
-        int s2=Integer.MIN_VALUE;
-        
+
+        int temp=0;
+        int b[]= new int[2];
+        int s[]= new int[2];
+
+        for(int i=0;i<2;i++)
+        {
+            b[i]=Integer.MIN_VALUE;
+            s[i]=Integer.MIN_VALUE;
+        }
         for(int i=0;i<n;i++)
         {
-            b1=Math.max(b1,-nums[i]);
-            s1=Math.max(s1,nums[i]+b1);
-            b2=Math.max(b2,s1-nums[i]);
-            s2=Math.max(s2,nums[i]+b2);
+            temp=0;
+            for(int j=0;j<2;j++)
+            {
+                b[j]=Math.max(b[j],temp-nums[i]);
+                s[j]=Math.max(s[j],nums[i]+b[j]);
+                temp=s[j];
+            }
         }
-        return s2;
+        return s[1];
     }
 }
