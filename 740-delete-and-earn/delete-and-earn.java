@@ -4,10 +4,12 @@ class Solution {
     {
         if(n<0)
             return 0;
+        if(n==0)
+            return keys[n]*mp.get(keys[n]);
         if(t[n]!=-1)
             return t[n];
         
-        int j=(n-1>-1 && keys[n-1]+1==keys[n]) ? 2 : 1;
+        int j=(keys[n-1]+1==keys[n]) ? 2 : 1;
         return t[n]=Math.max(keys[n]*mp.get(keys[n]) + dp(n-j,keys,mp) , dp(n-1,keys,mp));
     }
     public int deleteAndEarn(int[] nums) {
