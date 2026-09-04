@@ -13,7 +13,9 @@ class Solution {
         boolean temp=false;
         for(int k=i;k<j;k++)
         {
-            temp=temp || (dp(ch,i,k) && dp(ch,k+1,j));
+            t[i][k]=(dp(ch,i,k)) ? 1 : 0;
+            t[k+1][j]=(dp(ch,k+1,j)) ? 1 : 0;
+            temp=temp || (t[i][k]+t[k+1][j]==2);
         }
         t[i][j]=(temp) ? 1 : 0;
         return temp;
