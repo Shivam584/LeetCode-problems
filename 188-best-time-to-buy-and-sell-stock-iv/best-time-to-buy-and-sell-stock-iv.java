@@ -1,39 +1,27 @@
 class Solution {
-     int t[][][];
-    int dp(int[] nums, int i,int n, int k, int h)
-    {
-        if((k==0 || i==n) && h==0)
-            return 0;
-        if((k==0 || i==n) && h==1)
-            return Integer.MIN_VALUE;
-        
-        if(t[i][k][h]!=-1)
-            return t[i][k][h];
+    
+    public int maxProfit(int k, int[] nums) {
+        int n=nums.length;
 
-    int ans= dp(nums,i+1,n,k,h);
-        if(h==0)
+        int temp=0;
+        int b[] =new int[k];
+        int s[] =new int[k];
+
+        for(int i=0;i<k;i++)
         {
-            ans=Math.max(-nums[i]+dp(nums,i,n,k,1),ans);
+            b[i]=Integer.MIN_VALUE;
+            s[i]=Integer.MIN_VALUE;
         }
-        else
+        for(int i=0;i<n;i++)
         {
-            ans=Math.max(nums[i]+dp(nums,i,n,k-1,0),ans);
-        }
-        return t[i][k][h]=ans;
-    }
-    public int maxProfit(int k,int[] nums) {
-          int n=nums.length;
-          t=new int[n+1][k+1][3];
-        for(int i=0;i<=n;i++)
-        {
-            for(int j=0;j<=k;j++)
+            temp=0;
+            for(int j=0;j<k;j++)
             {
-                for(int l=0;l<3;l++)
-                {
-                    t[i][j][l]=-1;
-                }
+                b[j]=Math.max(b[j],temp-nums[i]);
+                s[j]=Math.max(s[j],nums[i]+b[j]);
+                temp=s[j];
             }
         }
-        return dp(nums, 0,n,k,0);
+        return s[k-1];
     }
 }
