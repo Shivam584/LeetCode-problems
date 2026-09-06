@@ -5,7 +5,6 @@ class Solution {
         int l=1,val=0;
         for(int i=1;i<nums.length;i++)
         {
-            l=tp.lastEntry().getValue();
             Integer ck=tp.ceilingKey(nums[i]);
             if(ck!=null)
             {
@@ -14,8 +13,8 @@ class Solution {
                 tp.put(nums[i],val);
             }
             else
-                tp.put(nums[i], l+1);
+                tp.put(nums[i], ++l);
         }
-        return tp.size();
+        return l;
     }
 }
