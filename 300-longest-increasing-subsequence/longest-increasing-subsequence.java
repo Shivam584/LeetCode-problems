@@ -1,16 +1,21 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        TreeMap<Integer,Integer> mp = new TreeMap<>();
-        for(int i=0;i<nums.length;i++)
+        TreeMap<Integer,Integer> tp= new TreeMap<>();
+        tp.put(nums[0],1);
+        int l=1,val=0;
+        for(int i=1;i<nums.length;i++)
         {
-            if(mp.size()==0 || mp.lastKey()<nums[i])
-                mp.put(nums[i],1);
-            else
+            l=tp.lastEntry().getValue();
+            Integer ck=tp.ceilingKey(nums[i]);
+            if(ck!=null)
             {
-                mp.remove(mp.ceilingKey(nums[i]));
-                mp.put(nums[i],1);
+                val=tp.get(ck);
+                tp.remove(ck);
+                tp.put(nums[i],val);
             }
+            else
+                tp.put(nums[i], l+1);
         }
-        return mp.size();
+        return tp.size();
     }
 }
