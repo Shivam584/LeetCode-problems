@@ -12,13 +12,6 @@ class Solution {
                      t[i][j]= true;
                 else if(j==0)
                      t[i][j]= false;
-                else if(p.charAt(j-1)=='.')
-                {
-                    if(i==0)
-                         t[i][j]= false;
-                    else
-                     t[i][j]= t[i][j] || t[i-1][j-1];
-                }
                 else if(p.charAt(j-1)=='*')
                 {
                     int k=0;
@@ -33,8 +26,11 @@ class Solution {
                 {
                      if(i==0)
                          t[i][j]= false;
-                    else if(s.charAt(i-1)==p.charAt(j-1))
-                         t[i][j]= t[i][j] || t[i-1][j-1];
+                      else 
+                      {
+                        if(p.charAt(j-1)=='.' || s.charAt(i-1)==p.charAt(j-1))
+                            t[i][j]= t[i][j] || t[i-1][j-1]; 
+                      } 
                 }
             }
         }
