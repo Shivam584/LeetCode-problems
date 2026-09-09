@@ -16,7 +16,7 @@ class Solution {
       
         int temp=0,ans=1000_000;
         int l=d/2;
-        for(int k=i;k<=j;k++)
+        for(int k=i;k<j;k++)
         {
             t[i][k][l]=dp(i,k,jd,l);
             t[k+1][j][d-l]=dp(k+1,j,jd,d-l);
