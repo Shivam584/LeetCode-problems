@@ -10,10 +10,10 @@ class Solution {
             return j;
         if(t[i][j]!=-1)
             return t[i][j];
-        int cost=1+dp(i-1,j-1,w1,w2);
+        int cost=dp(i-1,j-1,w1,w2);
         if(w1[i-1]==w2[j-1])
-            return t[i][j]=cost-1;
-        return t[i][j]=Math.min(cost,1+Math.min(cost,Math.min(dp(i-1,j,w1,w2),dp(i,j-1,w1,w2))));
+            return t[i][j]=cost;
+        return t[i][j]=Math.min(1+cost,1+Math.min(dp(i-1,j,w1,w2),dp(i,j-1,w1,w2)));
     }
     public int minDistance(String word1, String word2) {
         int w1=word1.length(),w2=word2.length();
