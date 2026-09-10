@@ -21,6 +21,8 @@ class Solution {
                         if(x!=null && x!=i)
                             t[i][p]=t[i][p] || t[x][i];
                     }
+                    if(t[0][1])
+                        return true;
                }
         return t[1][0];
     }
