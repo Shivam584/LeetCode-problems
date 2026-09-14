@@ -6,12 +6,6 @@ class Solution {
         for(int x: arr2)
             mp.put(x,0);
         int c=0;
-        for(int i=0;i<arr1.length;i++)
-        {
-            Integer val=mp.get(arr1[i]);
-            if(val!=null)
-                mp.put(arr1[i],val+1);
-        }
         int l=arr1.length-1;
         for(int i=arr1.length-1;i>-1;i--)
         {
@@ -20,6 +14,8 @@ class Solution {
                 arr1[l]=arr1[i];
                 l--;
             }
+            else
+                mp.put(arr1[i],mp.get(arr1[i])+1); 
         }
         l=0;
         for(int i=0;i<n;i++)
