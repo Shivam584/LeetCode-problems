@@ -5,12 +5,13 @@ class Solution {
         
         if(k==0)
             return 0;
-
+        
         if(k>n || i==n)
          return -1000_000_000_000_000l;
         if(t[i][k][fg]!=-1l)
             return t[i][k][fg];
-        t[i][k][fg]= ((k%2==1) ? (long)k*nums[i]: -k*((long)nums[i])) + Math.max(dp(i+1,n,k,1,nums),
+        long k1=(long)k;
+        t[i][k][fg]= ((k%2==1) ? k1*nums[i]: -k1*nums[i]) + Math.max(dp(i+1,n,k,1,nums),
         dp(i+1,n,k-1,1,nums));
 
         if(fg==0)
