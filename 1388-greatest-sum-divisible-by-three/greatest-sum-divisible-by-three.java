@@ -42,6 +42,8 @@ class Solution {
                     d12=d11;
                     d11=nums[i];
                 }
+                else 
+                        d12=Math.min(d12,nums[i]);
             }
                 
            if(nums[i]%3==2)
