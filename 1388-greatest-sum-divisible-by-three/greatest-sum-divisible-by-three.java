@@ -28,7 +28,7 @@ class Solution {
                         d22=Math.min(d22,nums[i]);
                 }
             }
-            System.out.println(d21+" "+d22);
+          
             return sum-Math.min(d21+d22,d1);
         }
 
@@ -42,14 +42,14 @@ class Solution {
                     d12=d11;
                     d11=nums[i];
                 }
-                else 
-                        d12=Math.min(d12,nums[i]);
+                // else 
+                //         d12=Math.min(d12,nums[i]);
             }
                 
            if(nums[i]%3==2)
                 d2=Math.min(d2,nums[i]); 
         }
-
+  System.out.println(d11+" "+d12);
         return sum-Math.min(d11+d12,d2);
     }
 }
