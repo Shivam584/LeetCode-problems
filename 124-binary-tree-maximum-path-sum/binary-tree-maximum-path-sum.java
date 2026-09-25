@@ -18,12 +18,8 @@ class Solution {
     int sumCal(TreeNode root)
     {
         if(root==null)
-            return Integer.MIN_VALUE+1000;
-        if(root.left==root.right)
-        {
-            maxSum=Math.max(maxSum,root.val);
-            return root.val;
-        }
+            return -100_000_000;
+    
         int l=sumCal(root.left);
         int r=sumCal(root.right);
         int maxEdge=Math.max(l,r);
