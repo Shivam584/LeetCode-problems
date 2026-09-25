@@ -19,8 +19,7 @@ class Solution {
             return root;
         
         TreeNode l1=invertTree(root.left);
-        TreeNode r1=invertTree(root.right);
-        root.left=r1;
+        root.left=invertTree(root.right);
         root.right=l1;
 
         return root;
