@@ -15,21 +15,18 @@
  */
 class Solution {
     int ans;
-    int findRev(TreeNode root)
+    int maxCal(TreeNode root)
     {
         if(root==null)
             return 0;
-        
-        int l=findRev(root.left);
-        int r=findRev(root.right);
-
+        int l=maxCal(root.left);
+        int r=maxCal(root.right);
         ans=Math.max(ans,l+r+1);
-        return 1+Math.max(l,r);
+        return Math.max(l,r)+1;
     }
     public int diameterOfBinaryTree(TreeNode root) {
-        ans=0;
-        findRev(root);
-      
-        return ans-1;
+       ans=0;
+       maxCal(root);
+       return ans-1;
     }
 }
