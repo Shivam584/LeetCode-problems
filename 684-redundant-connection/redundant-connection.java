@@ -24,7 +24,7 @@ class UnionFind
         int pb=find(b);
         if(rank[pa]>rank[pb])
         arr[pa]=arr[pb];
-        else if(rank[pa]>rank[pb])
+        else if(rank[pa]>rank[pa])
         arr[pb]=arr[pa];
         else
         {
