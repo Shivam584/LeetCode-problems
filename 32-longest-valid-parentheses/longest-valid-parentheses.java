@@ -1,21 +1,21 @@
 class Solution {
-    public int longestValidParentheses(String str) {
-        Stack<Integer> s = new Stack<>();
-        s.push(-1);
+    public int longestValidParentheses(String s) {
+       Deque<Integer> dq= new ArrayDeque<>();
         int c=0,ans=0;
-        for(int i=0;i<str.length();i++)
+        dq.addLast(-1);
+       for(int i=0;i<s.length();i++)
         {
-            s.push(i);
-            if(str.charAt(i)=='(')
-                c++;
+            dq.addLast(i);
+            if(s.charAt(i)=='(')
+            c++;
             else if(c>0)
             {
+                dq.pollLast();
+                dq.pollLast();
                 c--;
-                s.pop();
-                s.pop();
-                ans=Math.max(ans,i-s.peek());
             }
-        }
+            ans=Math.max(ans,i-dq.peekLast());
+        }        
         return ans;
     }
 }
