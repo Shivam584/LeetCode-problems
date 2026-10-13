@@ -7,8 +7,7 @@ class Solution {
             s.add(i);
        for(int l[] : trust)
        {
-           if(s.contains(l[0]))
-                s.remove(l[0]);
+            s.remove(l[0]);
             trusted[l[1]-1]++;
        }
         for(int i=0;i<n;i++)
