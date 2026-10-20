@@ -66,7 +66,7 @@ class UnionFind
     }
 }
 class Solution {
-    int sum(int a)
+    int Sum(int a)
     {
         int x=0;
         while(a>0)
@@ -79,13 +79,14 @@ class Solution {
  
     public int minSwaps(int[] nums) {
         int n=nums.length;
+        int sum[]= new int[n];
         List<Pair> rank= new ArrayList<>();
         for(int i=0;i<n;i++)
-            rank.add(new Pair(nums[i],i));
-        
+            {rank.add(new Pair(nums[i],i));
+            sum[i]=Sum(nums[i]);}
         Collections.sort(rank, (A,B) -> {
-            int x=sum(A.a);
-            int y=sum(B.a);
+            int x=sum[A.b];
+            int y=sum[B.b];
             if(x==y)
                 return Integer.compare(A.a,B.a);
             return Integer.compare(x,y);
