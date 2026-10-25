@@ -1,29 +1,25 @@
 class Solution {
-    // int dp(int n,int costs[])
-    // {
-    //     if(n==0)
-    //         return 0;
-    //     int a=dp(n-1,costs)+1;
-    //     if(n==1)
-    //         return costs[n-1]+a;
-    //     int b=dp(n-2,costs)+4;
-    //     if(n==2)
-    //         return costs[n-1]+Math.min(a,b);
-    //     int c=dp(n-3,costs)+9;
-
-    //     return costs[n-1]+Math.min(a,Math.min(b,c));  
-    // }
     public int climbStairs(int n, int[] costs) {
-            int t[]= new int[n+1];
-            t[0]=0;
-            t[1]=costs[0]+1;
-            if(n==1)
-                return t[1];
-            t[2]=costs[1]+Math.min(t[1]+1,t[0]+4);
-            if(n==2)
-                return t[2];
-            for(int i=3;i<=n;i++)
-                t[i]=costs[i-1]+Math.min(t[i-1]+1,Math.min(t[i-2]+4,t[i-3]+9));
-            return t[n];
+        if (n == 0)
+            return 0;
+
+        int a = 0, b = costs[0] + 1, c = 0, temp = 0;
+
+        if (n == 1)
+            return b;
+
+        c = costs[1] + Math.min(b + 1, a + 4);
+
+        if (n == 2)
+            return c;
+
+        for (int i = 3; i <= n; i++) {
+            temp = costs[i - 1] + Math.min(c + 1, Math.min(b + 4, a + 9));
+            a = b;
+            b = c;
+            c = temp;
+        }
+
+        return c;
     }
 }
